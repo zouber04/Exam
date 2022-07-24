@@ -121,7 +121,18 @@ def quicksort(unique, arr_words):
         
 
     return quicksort(items_lower,arr_words) + [pivot] + quicksort(items_greater,arr_words)      
+
+
+def is_valid_series(num_list,number,sum):
+    for x in range(len(num_list)):
+        temp_sum = num_list[x]
+        for j in range(x+1,number):
+            temp_sum += num_list[j]
+        if temp_sum > sum:
+            return False
+    return True
       
 if __name__ == "__main__":
-    num = xmostfrequent("peach apple peach orange apple peach", 4)
-    print(num)
+    
+    is_num = is_valid_series([8, 4, 8, 3, 1, 2, 7, 9], 3, 19)
+    print(is_num)
