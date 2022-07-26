@@ -1,14 +1,16 @@
 
+#########################
+# Author: Zouber Ismail
+# Exam
+# Date july 26 2022
+#########################
 
 
 
-
-def intersection(arr_one,arr_two):
-    pass
 
 def kthsmallest(arr,k):
     """
-    Sorting list of number in asceding order
+    Sorting list of number in ascending order
     Args: 
         -int array, numbers
     Returns: int array, sorted numbers
@@ -43,13 +45,34 @@ def kthsmallest(arr,k):
 
 
 def sum_digits(num):
+    """
+    Calculates the sum of the digits in a given number
+    Args: 
+        -int, number 
+    Returns: int, sum of the digits
+    
+    """
     if num == 0:
         return num
     return num%10 + sum_digits(int(num/10))
 
 def volume(dimensions):
+    """
+    Calculates volume for a list of dimensions 
+    Args: 
+        -list, dimensions to caculate volume
+    Returns: list, x most frequent words
+    
+    """
     return dimensions[0]*dimensions[1]*dimensions[2]
 def sortvolumes(sequence):
+    """
+    Sort a 2d array by volume
+    Args: 
+        -list, volume dimensions to be sorted
+    Returns: list, sorted list of dimensions by volume
+    
+    """
     length = len(sequence)
     
     if length <= 1:
@@ -70,57 +93,45 @@ def sortvolumes(sequence):
     return sortvolumes(items_lower) + [pivot] + sortvolumes(items_greater)
 
 def xmostfrequent(word, num):
+    """
+    Sorts a list of words by most frequent occurrences 
+    Args: 
+        -str, words 
+        -int, top number of the most frequent words 
+    Returns: list, x most frequent words
+    
+    """
     arr_words = word.split()
-    unique_list = []
+    unique_list = {}
+    frequency_arr = [None for x in range(len(arr_words))]
     for item in arr_words:
         if item not in unique_list:
-            unique_list.append(item)
-    
-    sorted_arr = quicksort(unique_list, arr_words)
-    output = []
-    if num > len(sorted_arr):
-        return sorted_arr
-    else:
-        for x in range(num):
-            output.append(sorted_arr[x])
-            
-        return output    
-def frequency(word, arr_words):
-    count = 0
-    
-    for x in arr_words:
-        if word in arr_words:
-            count += 1
-    return count
-       
-def quicksort(unique, arr_words):
-    """
-    Sort array of points based off euclidean distance from ascending order
-    Args: 
-        -array, unsorted points
-    Returns: array, Sorted points
-
-    """
-    length = len(unique)
-    
-    if length <= 1:
-        return unique
-    else:
-        pivot = unique.pop()
-
-    items_greater = []
-    items_lower = []
-    
-
-    for i in range(len(unique)):
-        if frequency(unique[i],arr_words) > frequency(pivot,arr_words):
-            items_greater.append(unique[i])
-
+            unique_list[item] = 1
         else:
-            items_lower.append(unique[i])
+            unique_list[item] += 1
+            
+    for key in unique_list:
+        if key not in frequency_arr:
+            frequency_arr[unique_list[key]] = [key]
+            
+        else:
+            frequency_arr[unique_list[key]].append(key)
+       
+    count = 0
+    last = len(frequency_arr)-1
+    output = []
+    while 0 <= count < num and count < len(unique_list):
+        if frequency_arr[last] != None:
+            for x in range(len(frequency_arr[last])):
+                print(frequency_arr[last][x])
+                output.append(frequency_arr[last][x])
+            count += 1
+        last -= 1
+            
         
-
-    return quicksort(items_lower,arr_words) + [pivot] + quicksort(items_greater,arr_words)      
+    return output
+        
+    
 
 
 def is_valid_series(num_list,number,sum):
@@ -134,5 +145,5 @@ def is_valid_series(num_list,number,sum):
       
 if __name__ == "__main__":
     
-    is_num = is_valid_series([8, 4, 8, 3, 1, 2, 7, 9], 3, 19)
+    is_num = xmostfrequent("peach apple peach orange apple peach", 5)
     print(is_num)
