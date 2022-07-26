@@ -1,4 +1,16 @@
+#########################
+# Author: Zouber Ismail
+# Exam part 1
+# Date july 11 2022
+#########################
 def nextprime(number):
+    """
+    Finding the next prime number
+    Args: 
+        -int, a number
+    Returns: int, the next prime number
+
+    """
     
     is_prime = False
     next_prime = number
@@ -15,9 +27,23 @@ def nextprime(number):
         
     return next_prime        
 def calculate_area(dimension):
+    """
+    Calculate the area of a triangle given a list of dimensions
+    Args: 
+        -list, dimensions
+    Returns: int, area of a triangle
+
+    """
     area = 0.5*dimension[0]*dimension[1]
     return area
 def minarea(arr):
+    """
+    Sorts a list of dimensions from a 2d array
+    Args: 
+        -list, dimensions
+    Returns: int, the next prime number
+
+    """
     
     lowest = arr[0]
     
@@ -28,12 +54,27 @@ def minarea(arr):
     return lowest  
 
 def count(arr,num):
+    """
+    Counts number of occurrences in an array
+    Args: 
+        -list, array of numbers
+        -int, number to scan for
+    Returns: int, number of occurrences
+
+    """
     count = 0
     for x in range(len(arr)):
         if arr[x] == num:
             count += 1
     return count
 def mode(arr):
+    """
+    Returns the mode in an array
+    Args: 
+        -list, numbers
+    Returns: int, the mode
+
+    """
     highest = arr[0]
      
     for x in range(1,len(arr)):
